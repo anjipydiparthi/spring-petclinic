@@ -6,17 +6,15 @@ pool:
 trigger:
   - main
 
-stages:
-  - stage: BuildStage
-    displayName: CI
-    jobs:
-      - job: mavenjob
-        displayName: maven
-        steps:
-          - task: Maven@3
-            inputs:
-              mavenPomFile: 'pom.xml'
-              goals: 'package'
-              publishJUnitResults: true
-              testResultsFiles: '**/surefire-reports/TEST-*.xml'
-              jdkVersionOption: '1.17'
+
+jobs:
+  - job: mavenjob
+    displayName: maven
+    steps:
+      - task: Maven@3
+        inputs:
+          mavenPomFile: 'pom.xml'
+          goals: 'package'
+          publishJUnitResults: true
+          testResultsFiles: '**/surefire-reports/TEST-*.xml'
+          jdkVersionOption: '1.17'
